@@ -37,9 +37,7 @@ app.post("/api/items", async (req, res) => {
   if (!name) return res.status(400).json({ error: "Tên món ăn bắt buộc" });
   const numericPrice = Number(price);
   if (isNaN(numericPrice) || numericPrice < 0)
-    return res
-      .status(400)
-      .json({ error: "Giá bán phải là số hợp lệ và >= 0" });
+    return res.status(400).json({ error: "Giá bán phải là số hợp lệ và >= 0" });
   const item = new Item({ name: name.trim(), price: numericPrice });
   await item.save();
   res.status(201).json(item);
